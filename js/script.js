@@ -88,21 +88,25 @@ const getUniqueRandomNumber = (min, max, blacklist) => {
 let grid = document.getElementById('grid');
 const playButton = document.getElementById('play-button');
 const retryButton = document.getElementById('retry-button');
-const mainSection = document.getElementById('main')
-const result = document.getElementById('result')
+const mainSection = document.getElementById('main');
+const gameOver = document.getElementById('game-over');
+result = document.getElementById('result');
 let score = 0;
 let bombs = [];
+let isOver = false
 
 
 
 playButton.addEventListener('click', function () {
-
+    //  riassegno il valore 'false' alla variabile isOver
+    isOver = false;
 
     // cambio il nome del bottone Gioca In Ricomincia
     this.innerText = 'Ricomincia!';
     // tolgo il contenuto della griglia per poi ricrearlo da capo a ogni pressione del bottone
     grid.innerHTML = '';
     result.innerHTML = '';
+    gameOver.innerHTML = '';
     // assegno un valore a rows e cells di default
     let rows = cells = 7
     // assegno una variabile al risultato della funzione che cambia la difficoltà
@@ -142,7 +146,9 @@ playButton.addEventListener('click', function () {
 
         cell.addEventListener('click', (event) => {
             //! se la cella è già stata cliccata, ferma
-            if (cell.classList.contains('clicked')) return
+            if (cell.classList.contains('clicked')) return;
+
+            if (isOver) return;
 
             // aggiungo la classe clicked alla cella cliccata
             event.target.classList.add('clicked');
@@ -155,14 +161,17 @@ playButton.addEventListener('click', function () {
             if (score === totalCells - bombs.length) {
                 message = 'COMPLIMENTI! HAI VINTO!';
                 console.log(message);
-                result.innerHTML = message;
+                gameOver.innerHTML = message;
+                result.innerHTML = `Il tuo punteggio è: ${score}`;
             }
             else if (bombs.includes(i)) {
                 score = score - 1;
                 event.target.classList.add('bomb');
                 message = 'GAME OVER. HAI PERSO.'
                 console.log(message);
-                result.innerHTML = message;
+                gameOver.innerHTML = message;
+                result.innerHTML = `Il tuo punteggio è: ${score}`;
+                isOver = true;
             }
         });
     };
