@@ -107,6 +107,8 @@ playButton.addEventListener('click', function () {
     let difficulty = selectDifficulty();
     // svuoto l'array delle bombe
     let bombs = [];
+    // azzero il punteggio
+    let score = 0;
 
 
 
@@ -142,18 +144,19 @@ playButton.addEventListener('click', function () {
             // stampo il numero della cella in console
             console.log(i);
             // aggiungo la classe clicked alla cella cliccata
+            event.target.classList.add('clicked');
+            // tengo il punteggio dell'utente
+            score = score + 1;
+            console.log(score)
+
             let message = '';
             if (bombs.includes(i)) {
                 event.target.classList.add('bomb');
                 message = 'GAME OVER. Hai perso.'
                 console.log(message);
-
-
-            } else {
-                event.target.classList.add('clicked');
-                // tengo il punteggio dell'utente
-                score = score + 1;
-                console.log(score)
+            } else if (score === totalCells - bombs.length) {
+                message = 'Complimenti! Hai vinto!';
+                console.log(message);
             }
         });
     };
