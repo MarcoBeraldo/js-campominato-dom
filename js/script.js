@@ -142,10 +142,19 @@ playButton.addEventListener('click', function () {
             // stampo il numero della cella in console
             console.log(i);
             // aggiungo la classe clicked alla cella cliccata
-            event.target.classList.add('clicked');
-            // tengo il punteggio dell'utente
-            score = score + 1;
-            console.log(score)
+            let message = '';
+            if (bombs.includes(i)) {
+                event.target.classList.add('bomb');
+                message = 'GAME OVER. Hai perso.'
+                console.log(message);
+
+
+            } else {
+                event.target.classList.add('clicked');
+                // tengo il punteggio dell'utente
+                score = score + 1;
+                console.log(score)
+            }
         });
     };
 
