@@ -1,0 +1,63 @@
+.bg-lightblue {
+    background-color: aquamarine;
+}
+
+h1 {
+    display: inline-block;
+    color: blue
+}
+
+header {
+    height: 80px;
+    display: flex;
+    background-color: antiquewhite;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0 1px 5px blue;
+}
+
+.cell-7 {
+    border: 1px solid blue;
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+    cursor: pointer;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell-9 {
+    border: 1px solid blue;
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+    cursor: pointer;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell-10 {
+    border: 1px solid blue;
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    cursor: pointer;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#grid {
+    flex-wrap: wrap;
+    max-width: 1000px;
+    height: 1000px;
+    margin: 0 auto;
+
+}
+
+.clicked {
+    background-color: lightblue;
+}
