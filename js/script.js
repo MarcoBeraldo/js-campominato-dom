@@ -93,6 +93,7 @@ const gameOver = document.getElementById('game-over');
 result = document.getElementById('result');
 let score = 0;
 let bombs = [];
+// variabile per definire se la partita è ancora in corso
 let isOver = false
 
 
@@ -171,6 +172,7 @@ playButton.addEventListener('click', function () {
                 console.log(message);
                 gameOver.innerHTML = message;
                 result.innerHTML = `Il tuo punteggio è: ${score}`;
+                // quando l'utente perde il valore isOver diventa vero
                 isOver = true;
             }
         });
