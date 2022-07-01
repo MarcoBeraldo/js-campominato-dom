@@ -89,6 +89,7 @@ let grid = document.getElementById('grid');
 const playButton = document.getElementById('play-button');
 const retryButton = document.getElementById('retry-button');
 const mainSection = document.getElementById('main')
+const result = document.getElementById('result')
 let score = 0;
 let bombs = [];
 
@@ -101,6 +102,7 @@ playButton.addEventListener('click', function () {
     this.innerText = 'Ricomincia!';
     // tolgo il contenuto della griglia per poi ricrearlo da capo a ogni pressione del bottone
     grid.innerHTML = '';
+    result.innerHTML = '';
     // assegno un valore a rows e cells di default
     let rows = cells = 7
     // assegno una variabile al risultato della funzione che cambia la difficoltà
@@ -141,22 +143,26 @@ playButton.addEventListener('click', function () {
         cell.addEventListener('click', (event) => {
             //! se la cella è già stata cliccata, ferma
             if (cell.classList.contains('clicked')) return
-            // stampo il numero della cella in console
-            console.log(i);
+
             // aggiungo la classe clicked alla cella cliccata
             event.target.classList.add('clicked');
             // tengo il punteggio dell'utente
             score = score + 1;
-            console.log(score)
 
+            // decido se l'utente ha vinto o perso
             let message = '';
-            if (bombs.includes(i)) {
+            console.log(score)
+            if (score === totalCells - bombs.length) {
+                message = 'COMPLIMENTI! HAI VINTO!';
+                console.log(message);
+                result.innerHTML = message;
+            }
+            else if (bombs.includes(i)) {
+                score = score - 1;
                 event.target.classList.add('bomb');
-                message = 'GAME OVER. Hai perso.'
+                message = 'GAME OVER. HAI PERSO.'
                 console.log(message);
-            } else if (score === totalCells - bombs.length) {
-                message = 'Complimenti! Hai vinto!';
-                console.log(message);
+                result.innerHTML = message;
             }
         });
     };

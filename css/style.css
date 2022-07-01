@@ -55,6 +55,7 @@ header {
     max-width: 1000px;
     height: 1000px;
     margin: 0 auto;
+    text-align: center;
 
 }
 
@@ -64,4 +65,12 @@ header {
 
 .bomb {
     background-color: red;
+}
+
+#result {
+    font-size: 4rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
